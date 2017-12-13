@@ -1,4 +1,4 @@
-import seaborn
+ï»¿import seaborn
 import pandas as pd
 import numpy as np
 from sklearn.metrics import classification_report
@@ -32,9 +32,9 @@ for header in headers:
     data.loc[data[header].isnull(), header] = 0
     data[header] = data[header].astype(int)
 	
-features = list(set(data.columns) - set('reason'))
+features = list(set(data.columns) - set('class'))
 
-#Ìàòğèöà êîğğåëÿöèé
+#ĞœĞ°Ñ‚Ñ€Ğ¸Ñ†Ğ° ĞºĞ¾Ñ€Ñ€ĞµĞ»ÑÑ†Ğ¸Ğ¹
 
 corr = data.corr()
 mask = np.zeros_like(corr, dtype=np.bool)
@@ -42,9 +42,10 @@ mask[np.triu_indices_from(mask)] = True
 f, ax = plt.subplots(figsize=(11, 9))
 cmap = seaborn.diverging_palette(220, 10, as_cmap=True)
 seaborn.heatmap(corr)
-seaborn.plt.show()
+plt.show()
 
-
+y= np.array(data['class'])
+X = np.array(data.drop('class', axis=1), dtype="float64")
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
 X_train = scale(X_train)
