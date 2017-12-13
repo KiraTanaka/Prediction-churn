@@ -1,7 +1,20 @@
+import seaborn
 import pandas as pd
 import numpy as np
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.preprocessing import scale
 import matplotlib.pyplot as plt
-data = pd.read_csv('dataset_train.csv')
+from sklearn.model_selection import GridSearchCV
+from imblearn.over_sampling import SMOTE
+
+
+data = pd.read_csv('dataset.csv')
 id= data['id']
 data = data.drop(['id'], axis=1)
 
